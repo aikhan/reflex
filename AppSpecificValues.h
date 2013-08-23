@@ -17,13 +17,13 @@
 #define rateURL @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=579388308"
 
 //Leaderboard Category IDs
-#define kEasyLeaderboardID @"com.semanticnotion.Reflex.leaderboard"
+#define kEasyLeaderboardID @"com.semanticnotion.reflex.leaderboard"
 #define featureAIdVar @"com.semanticnotion.Reflex.removeads"
 //Achievement IDs
-#define kAchievement1 @"com.semanticnotion.Reflex.first"
-#define kAchievement2 @"com.semanticnotion.Reflex.second"
-#define kAchievement3 @"com.semanticnotion.Reflex.third"
-#define kAchievement4 @"com.semanticnotion.Reflex.fourth"
+#define kAchievement1 @"com.semanticnotion.reflex.rookie"
+#define kAchievement2 @"com.semanticnotion.TapHunt.second"
+#define kAchievement3 @"com.semanticnotion.TapHunt.third"
+#define kAchievement4 @"com.semanticnotion.TapHunt.fourth"
 
 #endif
 
