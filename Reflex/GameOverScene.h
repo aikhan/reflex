@@ -10,6 +10,7 @@
 #import "FacebookAgent.h"
 #import "FBConnect.h"
 #import "cocos2d.h"
+#import "BsButton.h"
 
 @interface GameOverScene : CCLayerColor <FBDialogDelegate,FBSessionDelegate,FBRequestDelegate,FacebookAgentDelegate,UIAlertViewDelegate>{
     int boxes;
@@ -24,6 +25,7 @@
     UIScreen *mainScreen;
     CGFloat scale;
     CGFloat pixelHeight;
+    BsButton    *m_btnFreeGames;
 
 }
 

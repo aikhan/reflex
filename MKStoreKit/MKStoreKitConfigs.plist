@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Subscriptions</key>
+	<dict/>
+	<key>Consumables</key>
+	<dict>
+		<key>item 1</key>
+		<string>com.semanticnotion.TapHunt.buyAmmo100</string>
+		<key>item 2</key>
+		<string>com.semanticnotion.TapHunt.buyAmmo300</string>
+		<key>item 3</key>
+		<string>com.semanticnotion.TapHunt.buyAmmo600</string>
+		<key>item 4</key>
+		<string>com.semanticnotion.TapHunt.buyAmmo1000</string>
+		<key>item a</key>
+		<string>com.semanticnotion.TapHuntpaid.buyAmmo100</string>
+		<key>item b</key>
+		<string>com.semanticnotion.TapHuntpaid.buyAmmo300</string>
+		<key>item c</key>
+		<string>com.semanticnotion.TapHuntpaid.buyAmmo600</string>
+		<key>item d</key>
+		<string>com.semanticnotion.TapHuntpaid.buyAmmo1000</string>
+	</dict>
+	<key>Non-Consumables</key>
+	<array>
+		<string>com.semanticnotion.TapHunt.removeads</string>
+	</array>
+</dict>
+</plist>

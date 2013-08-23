@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "BsButton.h"
+#import "PauseView.h"
+#import "SNAdsManager.h"
 
-@interface GameScene : CCLayerColor {
+@interface GameScene : CCLayerColor <UIAlertViewDelegate, SNAdsManagerDelegate> {
     
     CCSprite *Blade1;
     CCSprite *Blade2;
@@ -35,6 +38,10 @@
     UIScreen *mainScreen;
     CGFloat scale;
     CGFloat pixelHeight;
+    
+    CCMenu *            mainMenu;
+    BsButton *          removeAdButton;
+    PauseView *			m_pauseView;
     
 }
 

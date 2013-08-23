@@ -10,7 +10,14 @@
 #import "GameScene.h"
 #import "InstructionScene.h"
 #import "AboutScene.h"
-
+#import "SettingsManager.h"
+#import "AppDelegate.h"
+#import "MKStoreManager.h"
+#import "MMProgressHUD.h"
+#import "MMProgressHUDOverlayView.h"
+#import "RestoreIAPScene.h"
+#import "AppSpecificValues.h"
+#import "SNAdsManager.h"
 
 @implementation Menu
 
@@ -47,22 +54,38 @@
         
         CCMenuItemImage *About=[CCMenuItemImage itemFromNormalImage:SHImageString(@"btn_about") selectedImage:SHImageString(@"btn_about_selected") target:self selector:@selector(ShowAbout)];
         
+       CCMenuItemImage *highscore=[CCMenuItemImage itemFromNormalImage:SHImageString(@"highscore") selectedImage:SHImageString(@"highscoreSelected") target:self selector:@selector(leaderboard)];
+        CCMenuItemImage *getafreegame =[CCMenuItemImage itemFromNormalImage:SHImageString(@"btnfreegame") selectedImage:SHImageString(@"btnfreegame") target:self selector:@selector(getaFreeGame)];
+        
+         CCMenuItemImage *restore=[CCMenuItemImage itemFromNormalImage:SHImageString(@"btnrestore") selectedImage:SHImageString(@"btnrestore") target:self selector:@selector(restoreIAP)];
+        
+      CCMenuItemImage *removeads=[CCMenuItemImage itemFromNormalImage:SHImageString(@"btnremoveAds") selectedImage:SHImageString(@"btnremoveAds") target:self selector:@selector(removeAds)];
+        removeads.tag = 20;
+        restore.tag=21;
+        CCMenu *menu;
+#ifdef FreeApp
+        if(![[SettingsManager sharedManager] hasInAppPurchaseBeenMade])
+            // if([MKStoreManager isFeaturePurchased: featureAIdVar] == NO)
+        {
+             menu=[CCMenu menuWithItems: NewGame, Instructions,  highscore, removeads,restore, getafreegame,nil];
+           // mainMenu = [CCMenu menuWithItems: startGame, highScore,store, instructions, removeads,restoreads, nil];
+        }
+        else
+            
+            menu=[CCMenu menuWithItems: NewGame, Instructions,highscore, getafreegame, nil];
+          
+        
+#endif
+        
+#ifdef PaidApp
+        menu=[CCMenu menuWithItems: NewGame, Instructions, highscore,getafreegame, nil];
        
+#endif
         
         
-        
-     
-        
-        
-       
-        
-        CCMenu *menu=[CCMenu menuWithItems:NewGame, Instructions, About, nil];
         
         [menu alignItemsVertically];
-        menu.position = ccp(SCREEN_WIDTH*0.7,SCREEN_HEIGHT/2);
-     //   NewGame.position=ccp(150,60);
-     //   Instructions.position=ccp(150,0);
-      //  About.position=ccp(150,-60);
+        menu.position = ccp(SCREEN_WIDTH/2,SCREEN_HEIGHT*0.41);
         [self addChild:background];
         [self addChild:menu];
         
@@ -88,6 +111,60 @@
 -(void)ShowAbout
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[AboutScene node]]];
+}
+-(void) leaderboard
+{
+    [(AppDelegate*)[[UIApplication sharedApplication] delegate] abrirLDB];
+}
+- (void) restoreIAP
+{
+     [[CCDirector sharedDirector] replaceScene:[RestoreIAPScene scene]];
+    
+	//[super dealloc];
+}
+-(void) getaFreeGame
+{
+    [[SNAdsManager sharedManager] giveMeMoreAppsAd];
+}
+
+- (void)removeAds{
+    
+#ifdef FreeApp
+    
+    [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleSwingLeft];
+    [MMProgressHUD showWithTitle:@"Purchasing" status:@"Please Wait"];
+    
+    [[MKStoreManager sharedManager] buyFeature:featureAIdVar
+                                    onComplete:^(NSString* purchasedFeature,
+                                                 NSData* purchasedReceipt,
+                                                 NSArray* availableDownloads)
+     {
+         
+         
+         //[[SettingsManager sharedManager].rootViewController hideLoadingView];
+         NSLog(@"Purchased: %@", purchasedFeature);
+         [SettingsManager sharedManager].hasInAppPurchaseBeenMade = YES;
+         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+         [standardUserDefaults setBool:[SettingsManager sharedManager].hasInAppPurchaseBeenMade forKey:@"inapp"];
+         [standardUserDefaults synchronize];
+         //[[SNAdsManager sharedManager] hideBannerAd];
+         [MMProgressHUD dismissWithSuccess:@"Game Purchased and Ads removed"];
+         
+         [self removeChildByTag:21 cleanup:YES];
+         [self removeChildByTag:20 cleanup:YES];
+     }
+                                   onCancelled:^
+     {
+         NSLog(@"Something went wrong");
+         
+         [MMProgressHUD dismissWithError:@"Unable to process your transaction.\nPlease try again in a moment." title:@"Error"];
+         
+     }];
+    
+    
+    
+    
+#endif
 }
 
 -(void) registerWithTouchDispatcher

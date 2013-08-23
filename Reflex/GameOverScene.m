@@ -10,6 +10,8 @@
 #import "GameScene.h"
 #import "Menu.h"
 #import "AppDelegate.h"
+#import "SettingsManager.h"
+#import "SNAdsManager.h"
 
 @implementation GameOverScene
 @synthesize boxes;
@@ -86,6 +88,21 @@
         GameOverText.color=ccc3(255, 255, 255);
         
         [self addChild:GameOverText];
+        m_btnFreeGames = [[BsButton buttonWithImage:SHImageString(@"btnfreegame")
+                                           selected:SHImageString(@"btnfreegameselected")
+                                             target:self
+                                           selector:@selector(openRevmobLink)] retain];
+        [m_btnFreeGames setPosition:ccp(SCREEN_WIDTH / 2, SCREEN_HEIGHT /6)];
+        [self addChild: m_btnFreeGames];
+
+#ifdef FreeApp
+        
+        if(![[SettingsManager sharedManager] hasInAppPurchaseBeenMade])
+        {
+            [[SNAdsManager sharedManager] hideBannerAd];
+            [[SNAdsManager sharedManager] giveMeThirdGameOverAd];
+        }
+#endif
 
         
         [[CCDirector sharedDirector] setDisplayFPS:NO];
@@ -103,6 +120,13 @@
     
     return self;
 }
+-(void) openRevmobLink
+{
+    // [[SoundManager sharedManager] playMenuSound];
+    [[SNAdsManager sharedManager] giveMeLinkAd];
+    //[[AdManagerSS sharedManager] openRevmobLink];
+}
+
 
 /*FACEBOOK CONNECT*/
 

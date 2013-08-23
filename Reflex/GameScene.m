@@ -11,7 +11,15 @@
 #import "GameOverScene.h"
 #import "AppDelegate.h"
 #import "SimpleAudioEngine.h"
-#import <iAd/ADBannerView.h>
+#import "BsButton.h"
+#import "SNAdsManager.h"
+#import "SettingsManager.h"
+#import "MMHud.h"
+#import "MMProgressHUD.h"
+#import "Menu.h"
+#import "PauseView.h"
+#import "MKStoreManager.h"
+#import "AppSpecificValues.h"
 
 
 
@@ -106,7 +114,21 @@
         
         
         Highscore.color=ccc3(255, 0, 0);
+        
+        
         [self addChild:Highscore z:3];
+        
+        CCMenuItem *pauseGame;
+        pauseGame = [CCMenuItemImage itemFromNormalImage:SHImageString(@"pause_n")
+                                           selectedImage: SHImageString(@"pause_d")
+                                                  target:self
+                                                selector:@selector(actionPause:)];
+        // pauseGame.tag = 1;
+        
+        mainMenu = [CCMenu menuWithItems: pauseGame, nil];
+        mainMenu.position = ccp( pauseGame.contentSize.width*0.9, SCREEN_HEIGHT - pauseGame.contentSize.height*0.6);
+        [self addChild:mainMenu z:10];
+        [self createPauseView] ;
 
         
         id MoveBox=[CCMoveTo actionWithDuration:speed position:ccp(Box.contentSize.width/2,SCREEN_HEIGHT/2)];
@@ -127,26 +149,16 @@
         [Blade2 runAction:[CCSequence actions:MoveBlade2, MoveBlade2Finished, nil]];
         
         [self schedule:@selector(CheckForSlice:) interval:0.08];
+#ifdef FreeApp
+        if (![SettingsManager sharedManager].hasInAppPurchaseBeenMade) {
+            [SNAdsManager sharedManager].delegate = self;
+            [[SNAdsManager sharedManager] giveMeBannerAdAtTop];
+            // [self createAdRemoveButton ];
+            
+        }
+#endif
         
         [[CCDirector sharedDirector] setDisplayFPS:NO];
-        
-       
-        /*---------------iADs------------------*/
-     /*   UIViewController *controller = [[UIViewController alloc] init];
-        controller.view.frame = CGRectMake(0,0,480,32);
-        
-        //From the official iAd programming guide
-        ADBannerView *adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
-        
-        adView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierLandscape];
-        
-        adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
-        
-        [controller.view addSubview:adView];
-        
-        //Then I add the adView to the openglview of cocos2d
-        [[[CCDirector sharedDirector] openGLView] addSubview:controller.view];*/
-        /*---------------iADs------------------*/
         
     }
     self.isTouchEnabled=YES;
@@ -345,6 +357,126 @@
         [self performSelector:@selector(terminate) withObject:nil afterDelay:2];
     }
 }
+
+
+- (void)bannerAdDidLoad{
+    [self createAdRemoveButton];
+}
+- (void) showIAPNOADS :(id)sender {
+#ifdef FreeApp
+    if([MKStoreManager isFeaturePurchased: featureAIdVar] == NO) {
+        
+        [MMProgressHUD setPresentationStyle:MMProgressHUDPresentationStyleSwingLeft];
+        [MMProgressHUD showWithTitle:@"Purchasing" status:@"Please Wait"];
+        [[MKStoreManager sharedManager] buyFeature:featureAIdVar
+                                        onComplete:^(NSString* purchasedFeature,
+                                                     NSData* purchasedReceipt,
+                                                     NSArray* availableDownloads)
+         {
+             
+             //   AppDelegate *mainDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+             
+             // mainDelegate.m_no_ads = NO;
+             
+         //    [[SettingsManager sharedManager].rootViewController hideLoadingView];
+             NSLog(@"Purchased: %@", purchasedFeature);
+             
+             
+             [SettingsManager sharedManager].hasInAppPurchaseBeenMade = YES;
+             NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+             [standardUserDefaults setBool:[SettingsManager sharedManager].hasInAppPurchaseBeenMade forKey:@"inapp"];
+             [standardUserDefaults synchronize];
+             [[SNAdsManager sharedManager] hideBannerAd];
+             [MMProgressHUD dismissWithSuccess:@"Ads removed and Wallpapers unlocked"];
+             
+             [self removeChildByTag:1000 cleanup:YES];
+             
+             //  [self createAd];
+             // remembering this purchase is taken care of by MKStoreKit.
+         }
+                                       onCancelled:^
+         {
+             NSLog(@"Something went wrong");
+             // UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something went wrong" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+             //  [alert show];
+             // [alert release];
+             [MMProgressHUD dismissWithError:@"Unable to process your Request.\nPlease try again in a moment." title:@"Error"];
+           //  [[SettingsManager sharedManager].rootViewController hideLoadingView];
+             // User cancels the transaction, you can log this using any analytics software like Flurry.
+         }];
+        
+        
+    }
+#endif
+    
+}
+-(void)createAdRemoveButton
+{
+    
+    
+    CCSprite* sprite1 = [CCSprite spriteWithFile:SHImageString(@"redCloseButton")];
+    
+    removeAdButton = [BsButton buttonWithImage:SHImageString(@"redCloseButton")
+                                      selected:SHImageString(@"redCloseButton")
+                                        target:self
+                                      selector:@selector(showIAPNOADS:)];
+    removeAdButton.tag = 1000;
+    if (!UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad) {
+        [removeAdButton setPosition:ccp( SCREEN_WIDTH-sprite1.contentSize.width-10,SCREEN_HEIGHT- sprite1.contentSize.height)];//+ 17 * (ipxbutton(2.2))
+    }else{
+        [removeAdButton setPosition:ccp( SCREEN_WIDTH-sprite1.contentSize.width-20,SCREEN_HEIGHT- sprite1.contentSize.height)];
+    }
+    [self addChild: removeAdButton z:10];
+    removeAdButton.visible = TRUE;
+    
+    
+    
+}
+- (void) actionPause:(id)sender{
+#ifdef FreeApp
+    if (![SettingsManager sharedManager].hasInAppPurchaseBeenMade) {
+        [[SNAdsManager sharedManager] hideBannerAd];
+    }
+#endif
+  //  [[SoundManager sharedSoundManager] stopBackgroundMusic];
+    mainMenu.visible = NO;
+	removeAdButton.visible = false;
+    [[CCDirector sharedDirector] pause];
+	[m_pauseView setVisible:TRUE];
+	
+}
+- (void) createPauseView
+{
+    
+	CGPoint	pos = ccp(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	m_pauseView = [[[PauseView alloc] initWithFrame:pos delegate:self] retain];
+	[self addChild:m_pauseView z:1000];
+	[m_pauseView setVisible:NO];
+}
+- (void)actionQuit:(id)sender {
+   // [[SoundManager sharedSoundManager] playBackgroundMusic:0];
+    [self terminate];
+	CCScene *scene = [Menu scene];
+    [[CCDirector sharedDirector] resume];
+	CCTransitionScene *ts = [CCTransitionFade transitionWithDuration:0.6f scene:scene withColor:ccBLACK];
+    
+	[[CCDirector sharedDirector] replaceScene:ts];
+}
+
+- (void)actionResume:(id)sender {
+    
+#ifdef FreeApp
+    if (![SettingsManager sharedManager].hasInAppPurchaseBeenMade) {
+        [[SNAdsManager sharedManager] giveMeBannerAdAtTop];
+    }
+#endif
+//    [[SoundManager sharedSoundManager] playBackgroundMusic:1];
+    mainMenu.visible = YES;
+    self.isAccelerometerEnabled = YES;
+	[m_pauseView setVisible:FALSE];
+    [[CCDirector sharedDirector] resume];
+}
+
 
 -(void)terminate
 {

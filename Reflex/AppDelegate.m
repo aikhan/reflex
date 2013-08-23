@@ -14,6 +14,11 @@
 #import "GameScene.h"
 #import "Splash.h"
 #import "SimpleAudioEngine.h"
+#include "SNAdsManager.h"
+#import "MKStoreManager.h"
+#import "AppSpecificValues.h"
+#import "SettingsManager.h"
+#import "Flurry.h"
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
@@ -27,7 +32,7 @@
 @implementation AppDelegate
 
 @synthesize window,box;
-
+@synthesize gameCenterManager, currentLeaderBoard;
 @synthesize link;
 @synthesize connection;
 @synthesize data;
@@ -73,6 +78,14 @@
     }
     
     
+    [self configureSettings];
+#ifdef FreeApp
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    [SettingsManager sharedManager].hasInAppPurchaseBeenMade = [standardUserDefaults boolForKey:@"inapp"];
+    
+#endif
+    [MKStoreManager sharedManager];
+    [self initGameCenter];    
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
@@ -87,7 +100,7 @@
 	// Init the View Controller
 	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
 	viewController.wantsFullScreenLayout = YES;
-	
+	[SettingsManager sharedManager].rootViewController = viewController;
 	//
 	// Create the EAGLView manually
 	//  1. Create a RGB565 format. Alternative: RGBA8
@@ -115,7 +128,8 @@
 	// By default, this template only supports Landscape orientations.
 	// Edit the RootViewController.m file to edit the supported orientations.
 	//
-#if GAME_AUTOROTATION == kGameAutorotationUIViewController
+   
+/*#if GAME_AUTOROTATION == kGameAutorotationUIViewController
     if (SYSTEM_VERSION_LESS_THAN(@"5.0")) {
         [director setDeviceOrientation:kCCDeviceOrientationPortrait];
     }
@@ -125,8 +139,8 @@
     }
 #else
 	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
-#endif
-	
+#endif*/
+	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
 	[director setAnimationInterval:1.0/60];
 	[director setDisplayFPS:YES];
 	
@@ -135,7 +149,8 @@
 	[viewController setView:glView];
 	
 	// make the View Controller a child of the main window
-    [window addSubview: viewController.view];
+    window.rootViewController = viewController;
+  //  [window addSubview: viewController.view];
 	
 	[window makeKeyAndVisible];
 	
@@ -147,7 +162,20 @@
 	
 	// Removes the startup flicker
 	[self removeStartupFlicker];
-	
+#ifdef FreeApp
+    
+    
+    if (![SettingsManager sharedManager].hasInAppPurchaseBeenMade) {
+        [[SNAdsManager sharedManager] giveMeBootUpAd];
+        [Flurry startSession:flurryKey];
+        
+    }
+#endif
+#ifdef PaidApp
+    //
+    [Flurry startSession:flurryKey];
+    [[SNAdsManager sharedManager] giveMePaidFullScreenAd];
+#endif
 	// Run the intro Scene
 	[[CCDirector sharedDirector] runWithScene: [Splash scene]];
 }
@@ -186,7 +214,15 @@
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application {
-	[[CCDirector sharedDirector] startAnimation];
+    [[CCDirector sharedDirector] startAnimation];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+#ifdef FreeApp
+    
+    if (![SettingsManager sharedManager].hasInAppPurchaseBeenMade) {
+        [[SNAdsManager sharedManager] giveMeWillEnterForegroundAd];
+    }
+    
+#endif
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -203,6 +239,140 @@
 
 - (void)applicationSignificantTimeChange:(UIApplication *)application {
 	[[CCDirector sharedDirector] setNextDeltaTimeZero:YES];
+}
+
+- (void)configureSettings{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    self.appStartupCount = [standardUserDefaults integerForKey:@"startupcount"];
+    self.appStartupCount++;
+    [standardUserDefaults setInteger:self.appStartupCount forKey:@"startupcount"];
+    if (self.appStartupCount <= 1) {
+        [SettingsManager sharedManager].hasInAppPurchaseBeenMade = NO;
+
+        
+    }else{
+        [SettingsManager sharedManager].hasInAppPurchaseBeenMade = [standardUserDefaults boolForKey:@"inapp"];
+    }
+}
+
+//GAMECENTER
+
+
+//#pragma mark Action Methods
+- (void) initGameCenter {
+	if (viewController2 != nil)
+		return;
+	viewController2 = [GCViewController alloc];
+	currentLeaderBoard = kEasyLeaderboardID;
+	if ([GameCenterManager isGameCenterAvailable])
+	{
+		gameCenterManager = [[[GameCenterManager alloc] init] autorelease];
+		[gameCenterManager setDelegate:self];
+		[gameCenterManager authenticateLocalUser];
+	}
+}
+
+- (void) addOne:(int)score{
+    [self initGameCenter];
+	NSString* identifier= NULL;
+    
+	if (score>=2000) {
+		identifier= kAchievement4;
+	}
+	else if (score>=1500) {
+		identifier= kAchievement3;
+	}
+	else if (score>=1000) {
+		identifier= kAchievement2;
+	}
+	else {
+		identifier= kAchievement1;
+	}
+	if(identifier!= NULL){
+		[gameCenterManager submitAchievement: identifier percentComplete:100.0];
+	}
+	//[self performSelector:@selector(submitScore) withObject:nil afterDelay:0.2];
+    [self submitScore:score];
+}
+
+- (void)submitScore:(int) score{
+	if(score>0){
+		[gameCenterManager reportScore:score forCategory: currentLeaderBoard];
+	}
+}
+
+#pragma mark GameCenter View Controllers
+
+- (void) abrirLDB{
+	if([GameCenterManager isGameCenterAvailable])
+	{
+		[self initGameCenter];
+		[viewController2.view setHidden:YES];
+		[self.window addSubview:viewController2.view];
+        // [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(showLeaderboard) userInfo:nil repeats:NO];
+		[self showLeaderboard];
+	}
+	else
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Gamecenter is not available in your iOS version" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+	
+}
+
+- (void)clearIAP {
+	[[MKStoreManager sharedManager] removeAllKeychainData ];
+}
+
+- (void) abrirACHV {
+	if([GameCenterManager isGameCenterAvailable])
+	{
+		[self initGameCenter];
+		[viewController2.view setHidden:YES];
+		//[self.window addSubview:gcviewController.view];
+		[self showAchievements];
+	}
+	else
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Gamecenter is not available in your iOS version" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+}
+
+- (void) showLeaderboard {
+	GKLeaderboardViewController *leaderboardController = [[GKLeaderboardViewController alloc] init];
+	if (leaderboardController != NULL) {
+		leaderboardController.category = currentLeaderBoard;
+		leaderboardController.timeScope = GKLeaderboardTimeScopeAllTime;
+		leaderboardController.leaderboardDelegate = self;
+		[viewController2 presentModalViewController: leaderboardController animated: YES];
+	}
+}
+
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)controller{
+	[controller dismissModalViewControllerAnimated:YES];
+	//	[gcviewController.view removeFromSuperview];
+	//	[gcviewController.view setHidden:YES];
+}
+
+- (void) showAchievements {
+	GKAchievementViewController *achievements = [[GKAchievementViewController alloc] init];
+	if (achievements != NULL){
+		achievements.achievementDelegate = self;
+		[viewController2 presentModalViewController: achievements animated: YES];
+	}
+}
+
+- (void)achievementViewControllerDidFinish:(GKAchievementViewController *)controller;{
+	[controller dismissModalViewControllerAnimated: YES];
+	//	[gcviewController.view removeFromSuperview];
+	//	[gcviewController.view setHidden:YES];
+}
+
+- (IBAction) resetAchievements:(id) sender {
+	[gameCenterManager resetAchievements];
 }
 
 /*TWITTER CONNECT*/

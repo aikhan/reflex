@@ -7,7 +7,7 @@
 		<key>Reflex Paid.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Reflex.xcscheme</key>
 		<dict>
@@ -18,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>3851AD9317C67A07000D713D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3898BE3B17C764A100DE004F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
