@@ -23,7 +23,7 @@
 #import <Twitter/Twitter.h>
 #import <Twitter/TWTweetComposeViewController.h>
 #import <Social/Social.h>
-//#import "FacebookScorer.h"
+#import "LocalNotificationManager.h"
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
@@ -224,6 +224,7 @@
 
 -(void) applicationDidEnterBackground:(UIApplication*)application {
 	[[CCDirector sharedDirector] stopAnimation];
+    [self scheduleAlarm];
 }
 
 -(void) applicationWillEnterForeground:(UIApplication*)application {
@@ -267,6 +268,29 @@
         [SettingsManager sharedManager].hasInAppPurchaseBeenMade = [standardUserDefaults boolForKey:@"inapp"];
     }
 }
+
+//////////////////////
+//Local Notifications
+//////////////////////
+
+
+
+-(void) scheduleAlarm {
+    LocalNotificationManager *localNotification = [[LocalNotificationManager alloc] initWithMessage:@"Missing the action. Checkout if you have improved your reflexes."];
+    // [localNotification testNotificationsSecondsWithSoundFileName:nil andMessage:@"Test Message"];
+    [localNotification release];
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notif {
+    // Handle the notificaton when the app is running
+    NSLog(@"Recieved Notification %@",notif);
+    
+	application.applicationIconBadgeNumber = 0;
+}
+
+
+/////////////////////////
+//END LOCAL NOTIFICATIONS
 
 //GAMECENTER
 

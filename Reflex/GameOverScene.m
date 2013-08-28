@@ -42,7 +42,7 @@
         
         appDelegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
         boxes=appDelegate.box;
-        
+        [self submitMyScore];
         CCSprite *background=[CCSprite spriteWithFile:SHImageString(@"bg_game")];
         background.position=ccp(SCREEN_WIDTH/2,SCREEN_HEIGHT/2);
         [self addChild:background];
@@ -129,6 +129,13 @@
     
     return self;
 }
+
+- (void) submitMyScore
+{
+    AppDelegate* app = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [app addOne:appDelegate.box];
+}
+
 -(void) openRevmobLink
 {
     // [[SoundManager sharedManager] playMenuSound];

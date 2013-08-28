@@ -55,7 +55,7 @@
 @property (nonatomic,readwrite) BOOL PostedStatus;
 @property (nonatomic,retain) NSString *myLink;
 
-
+- (void) addOne:(int)score;
 - (void)twitterTapped;
 - (void)sendMail;
 
