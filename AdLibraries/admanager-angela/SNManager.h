@@ -41,7 +41,7 @@
 #define kTapJoyAppID @""
 #define kTapJoySecretKey @""
 
-#define kRateURL @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=470517691"
+#define kRateURL @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=695102537"
 #endif
 
 #ifdef PaidApp
@@ -58,7 +58,7 @@
 #define kTapJoySecretKey @""
 //#define MOBCLIX_ID @""//@"2C63EF1A-CA74-4467-8D30-1032D073A367"//2C63EF1A-
 
-#define kRateURL @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=689269923"
+#define kRateURL @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=470486083"
 #endif
 
 #define alSDKKey @"szwFHrfAufK_TAyhLTgJe4nEu9rN5A0x8wAPlqadUwcy4ZeQ2JkgNVwGelekvef1ZqRIe0x8wX5_5kP728pQei"

@@ -8,7 +8,7 @@
 	<dict/>
 	<key>Non-Consumables</key>
 	<array>
-		<string>com.semanticnotion.Reflex.removeads</string>
+		<string>com.semanticnotion.ReflexFree.removeads</string>
 	</array>
 </dict>
 </plist>

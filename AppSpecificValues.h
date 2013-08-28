@@ -11,14 +11,17 @@
 #ifdef FreeApp
 
 #define rateURL @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=579388308"
-//Leaderboard Category IDs
-#define kEasyLeaderboardID @"com.semanticnotion.reflex.leaderboard"
-#define featureAIdVar @"com.semanticnotion.Reflex.removeads"
+#define kEasyLeaderboardID @"com.semanticnotion.ReflexFree.leaderboard"
+#define featureAIdVar @"com.semanticnotion.ReflexFree.removeads"
 //Achievement IDs
-#define kAchievement1 @"com.semanticnotion.reflex.rookie"
-#define kAchievement2 @"com.semanticnotion.TapHunt.amateur"
-#define kAchievement3 @"com.semanticnotion.TapHunt.pro"
-#define kAchievement4 @"com.semanticnotion.TapHunt.expert"
+#define kAchievement1 @"com.semanticnotion.ReflexFree.rookie"
+#define kAchievement2 @"com.semanticnotion.ReflexFree.amateur"
+#define kAchievement3 @"com.semanticnotion.ReflexFree.pro"
+#define kAchievement4 @"com.semanticnotion.ReflexFree.expert"
+
+
+
+
 
 #endif
 
@@ -27,15 +30,14 @@
 
 #ifdef PaidApp
 
-#define rateURL @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=689269923"
-//Leaderboard Category IDs
-#define kEasyLeaderboardID @"com.semanticnotion.ReflexPaid.leaderboard"
-//Achievement IDs
-#define kAchievement1 @"com.semanticnotion.ReflexPaid.rookie"
-#define kAchievement2 @"com.semanticnotion.ReflexPaid.amateur"
-#define kAchievement3 @"com.semanticnotion.ReflexPaid.pro"
-#define kAchievement4 @"com.semanticnotion.ReflexPaid.expert"
+#define rateURL @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=470486083"
+#define kEasyLeaderboardID @"com.semanticnotion.reflex.leaderboard"
 #define featureAIdVar @""
+//Achievement IDs
+#define kAchievement1 @"com.semanticnotion.reflex.rookie"
+#define kAchievement2 @"com.semanticnotion.reflex.amateur"
+#define kAchievement3 @"com.semanticnotion.reflex.pro"
+#define kAchievement4 @"com.semanticnotion.reflex.expert"
 
 #endif
 

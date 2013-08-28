@@ -646,6 +646,8 @@
 		3851AFBB17C680FD000D713D /* WWURLMatching.m in Sources */ = {isa = PBXBuildFile; fileRef = 3851AF3717C680FC000D713D /* WWURLMatching.m */; };
 		3851AFBD17C680FD000D713D /* RevMobAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3851AF3817C680FC000D713D /* RevMobAds.framework */; };
 		3851AFBF17C680FD000D713D /* TapjoyAdvertiserLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3851AF3A17C680FC000D713D /* TapjoyAdvertiserLibrary.a */; };
+		386D2CD117CE480B0083DC32 /* Icon 144.png in Resources */ = {isa = PBXBuildFile; fileRef = 386D2CD017CE480A0083DC32 /* Icon 144.png */; };
+		386D2CD217CE48410083DC32 /* Icon 144.png in Resources */ = {isa = PBXBuildFile; fileRef = 386D2CD017CE480A0083DC32 /* Icon 144.png */; };
 		3898BE1F17C762F200DE004F /* GenericAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3898BE1217C762F200DE004F /* GenericAd.m */; };
 		3898BE2117C762F200DE004F /* LocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3898BE1417C762F200DE004F /* LocalNotificationManager.m */; };
 		3898BE2317C762F200DE004F /* RateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3898BE1617C762F200DE004F /* RateManager.m */; };
@@ -1153,6 +1155,7 @@
 		3851AF3A17C680FC000D713D /* TapjoyAdvertiserLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = TapjoyAdvertiserLibrary.a; sourceTree = "<group>"; };
 		3851AF3B17C680FC000D713D /* TapjoyConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapjoyConnect.h; sourceTree = "<group>"; };
 		3851AF3C17C680FC000D713D /* TapjoyConnectConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapjoyConnectConstants.h; sourceTree = "<group>"; };
+		386D2CD017CE480A0083DC32 /* Icon 144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon 144.png"; sourceTree = "<group>"; };
 		3898BE1117C762F200DE004F /* GenericAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericAd.h; sourceTree = "<group>"; };
 		3898BE1217C762F200DE004F /* GenericAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericAd.m; sourceTree = "<group>"; };
 		3898BE1317C762F200DE004F /* LocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationManager.h; sourceTree = "<group>"; };
@@ -2352,6 +2355,7 @@
 		F586A020142B3C6C0059AE35 = {
 			isa = PBXGroup;
 			children = (
+				386D2CD017CE480A0083DC32 /* Icon 144.png */,
 				38BE3C4817CE0F0100D766CC /* Twitter.framework */,
 				38BE3C4617CE0EFC00D766CC /* CoreLocation.framework */,
 				38BE3C4417CE0EDE00D766CC /* MobileCoreServices.framework */,
@@ -3097,6 +3101,7 @@
 				384458FA17CE204300741F0E /* silver-button-normal@2x.png in Resources */,
 				384458FB17CE204300741F0E /* silver-button-pressed.png in Resources */,
 				384458FC17CE204300741F0E /* silver-button-pressed@2x.png in Resources */,
+				386D2CD217CE48410083DC32 /* Icon 144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3359,6 +3364,7 @@
 				38DFF49A17C8DDAC00DADF92 /* silver-button-normal@2x.png in Resources */,
 				38DFF49C17C8DDAC00DADF92 /* silver-button-pressed.png in Resources */,
 				38DFF49E17C8DDAC00DADF92 /* silver-button-pressed@2x.png in Resources */,
+				386D2CD117CE480B0083DC32 /* Icon 144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
