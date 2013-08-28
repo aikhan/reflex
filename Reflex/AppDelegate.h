@@ -12,7 +12,7 @@
 #import "GameCenterManager.h"
 #import <MessageUI/MessageUI.h>
 #import "GCViewController.h"
-
+#import <FacebookSDK/FacebookSDK.h>
 @class RootViewController;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate,GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameCenterManagerDelegate, SA_OAuthTwitterControllerDelegate,MFMailComposeViewControllerDelegate> {
@@ -28,6 +28,10 @@
     NSMutableData *data;
     NSString *linkToApp;
     NSString *myLink;
+    FBLoginView *loginview;
+    BOOL LoggedIn;
+    BOOL PostedStatus;
+    
 
 }
 
@@ -41,7 +45,10 @@
 @property (nonatomic, retain) RootViewController	*viewController;
 @property (nonatomic, retain) GameCenterManager *gameCenterManager;
 @property (nonatomic, retain) NSString* currentLeaderBoard;
-
+@property (strong, nonatomic) FBSession *session;
+@property (strong, nonatomic) FBLoginView *loginview;
+@property (nonatomic,readwrite) BOOL LoggedIn;
+@property (nonatomic,readwrite) BOOL PostedStatus;
 @property (nonatomic,retain) NSString *myLink;
 
 

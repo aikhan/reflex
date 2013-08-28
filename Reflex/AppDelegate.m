@@ -19,6 +19,8 @@
 #import "AppSpecificValues.h"
 #import "SettingsManager.h"
 #import "Flurry.h"
+#import <FacebookSDK/FacebookSDK.h>
+//#import "FacebookScorer.h"
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
@@ -38,9 +40,10 @@
 @synthesize data;
 @synthesize linkToApp;
 @synthesize myLink;
-
-
-
+@synthesize session = _session;
+@synthesize  loginview = _loginview;;
+@synthesize LoggedIn;
+@synthesize PostedStatus;
 - (void) removeStartupFlicker
 {
 	//
@@ -64,10 +67,14 @@
 }
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
+    
+    
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"Slice.mp3"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"hit.mp3"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"miss.mp3"];
     
+    LoggedIn = false;
+    PostedStatus=false;
     
     link = [NSUserDefaults standardUserDefaults];
     myLink = [link stringForKey:@"stringKey"];
@@ -85,7 +92,8 @@
     
 #endif
     [MKStoreManager sharedManager];
-    [self initGameCenter];    
+    [self initGameCenter];
+   
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
@@ -203,6 +211,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	[[CCDirector sharedDirector] resume];
+   [FBAppEvents activateApp];
+   [FBAppCall handleDidBecomeActiveWithSession:self.session];
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
@@ -233,7 +243,7 @@
 	[viewController release];
 	
 	[window release];
-	
+	[FBSession.activeSession closeAndClearTokenInformation];
 	[director end];	
 }
 
@@ -375,7 +385,9 @@
 	[gameCenterManager resetAchievements];
 }
 
-/*TWITTER CONNECT*/
+
+
+
 
 #pragma mark -
 #pragma mark Twitter 

@@ -7,17 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FacebookAgent.h"
-#import "FBConnect.h"
+//#import "FacebookAgent.h"
+//#import "FBConnect.h"
 #import "cocos2d.h"
 #import "BsButton.h"
+#import <FacebookSDK/FacebookSDK.h>
 
-@interface GameOverScene : CCLayerColor <FBDialogDelegate,FBSessionDelegate,FBRequestDelegate,FacebookAgentDelegate,UIAlertViewDelegate>{
+#import "AppDelegate.h"
+@interface GameOverScene : CCLayerColor <UIAlertViewDelegate, FBLoginViewDelegate>{
     int boxes;
-    FBLoginButton			*fbButton;
-	FacebookAgent			*fbAgent;
+  //  FBLoginButton			*fbButton;
+	//FacebookAgent			*fbAgent;
     UIAlertView *internetErrorAlert;
-    
+    NSString * message;
     float counter;
     float ipScaleY;
     float ipScaleX;
@@ -26,11 +28,14 @@
     CGFloat scale;
     CGFloat pixelHeight;
     BsButton    *m_btnFreeGames;
+    AppDelegate *appDelegate;
+    BOOL loggedIN;
+    BOOL PostedComment;
 
 }
 
 @property(nonatomic,readwrite) int boxes;
-@property (nonatomic, retain) FBLoginButton *fbButton;
+//@property (nonatomic, retain) FBLoginButton *fbButton;
 @property (nonatomic, retain) UIAlertView *internetErrorAlert;
 
 +(CCScene *) scene;
