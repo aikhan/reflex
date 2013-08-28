@@ -20,6 +20,9 @@
 #import "SettingsManager.h"
 #import "Flurry.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import <Twitter/Twitter.h>
+#import <Twitter/TWTweetComposeViewController.h>
+#import <Social/Social.h>
 //#import "FacebookScorer.h"
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
@@ -393,10 +396,63 @@
 #pragma mark Twitter 
 
 
+
 - (void)twitterTapped{
     
     //if (_engine) return;
-    _engine = [[SA_OAuthTwitterEngine alloc] initOAuthWithDelegate: self];
+   
+    if([TWTweetComposeViewController canSendTweet])//check for ios 5
+    {
+        NSLog(@"Twitter framwork is available");
+        TWTweetComposeViewController *twitterComposer = [[TWTweetComposeViewController alloc]init];
+        NSString * update = @"Hey Check out This Cool Game. I Scored ";
+        update = [update stringByAppendingFormat:@"%d",box];
+        update = [update stringByAppendingString:@" with my speed. How fast are you?"];
+        update = [update stringByAppendingFormat:@" You can download it at %@",myLink];
+        [twitterComposer setInitialText:update];
+        [viewController presentModalViewController: twitterComposer animated: YES];
+        twitterComposer.completionHandler = ^(TWTweetComposeViewControllerResult res)
+        {
+            //successful posting
+            if(res == TWTweetComposeViewControllerResultDone)
+            {
+                objAlertView = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Tweet Successful" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [objAlertView show];
+                [objAlertView release];
+            }
+            else if(res == TWTweetComposeViewControllerResultCancelled)
+            {
+                objAlertView = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Tweet was not Successful" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [objAlertView show];
+                [objAlertView release];
+            }
+            [viewController dismissModalViewControllerAnimated:YES];
+            [twitterComposer release];
+        };
+        
+    }
+    else{//check for ios 6
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+        {
+            NSLog(@"Twitter framwork is available in ios 6");
+            SLComposeViewController *tweetSheet = [SLComposeViewController
+                                                   composeViewControllerForServiceType:SLServiceTypeTwitter];
+            [tweetSheet setInitialText:@"Initial Tweet Text!"];
+            [viewController presentViewController:tweetSheet animated:YES completion:nil];
+        }
+        else
+        {
+        
+        
+        NSLog(@"Twitter framwork is not available");
+        objAlertView = [[UIAlertView alloc]initWithTitle:@"Alert" message:@"Your device cannot send tweets" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [objAlertView show];
+        [objAlertView release];
+        }
+    }
+    
+    
+ /*   _engine = [[SA_OAuthTwitterEngine alloc] initOAuthWithDelegate: self];
     _engine.consumerKey = kOAuthConsumerKey;
     _engine.consumerSecret = kOAuthConsumerSecret;
     
@@ -417,6 +473,7 @@
         [_engine sendUpdate:update];
         //TODO: Change this behaviour create a seprate Catch Object & set its properties
     }
+  */
 }
 
 
@@ -434,6 +491,7 @@
 
 //=============================================================================================================================
 #pragma mark SA_OAuthTwitterControllerDelegate
+/*
 - (void) OAuthTwitterController: (SA_OAuthTwitterController *) controller authenticatedWithUsername: (NSString *) username {
 	NSLog(@"Authenicated for %@", username);
     NSString * update = @"Hey Check out This Cool Game. I Scored ";
@@ -459,7 +517,7 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Congratulations" message:@"Your score has been successfully updated" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[alert show];
 	[alert release];
-}
+}*/
 
 /*TWITTER CONNECT ENDS HERE*/
 

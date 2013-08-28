@@ -13,6 +13,7 @@
 #import "SettingsManager.h"
 #import "SNAdsManager.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import <Social/Social.h>
 //#import "FacebookScorer.h"
 
 @implementation GameOverScene
@@ -457,11 +458,13 @@
  */
 /*FACEBOOK CONNECT ENDS*/
 
+#pragma mark - twitter
+
 -(void)twitterTapped
 {
     NSLog(@"Twitter Tapped");
     [appDelegate twitterTapped];
-}
+}//
 
 -(void)mailTapped
 {

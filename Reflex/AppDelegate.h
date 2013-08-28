@@ -7,22 +7,26 @@
 //
 #import <GameKit/GameKit.h>
 #import <UIKit/UIKit.h>
-#import "SA_OAuthTwitterEngine.h"
-#import "SA_OAuthTwitterController.h"
+//#import "SA_OAuthTwitterEngine.h"
+//#import "SA_OAuthTwitterController.h"
 #import "GameCenterManager.h"
 #import <MessageUI/MessageUI.h>
 #import "GCViewController.h"
+#import <Twitter/Twitter.h>
 #import <FacebookSDK/FacebookSDK.h>
 @class RootViewController;
 
-@interface AppDelegate : NSObject <UIApplicationDelegate,GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameCenterManagerDelegate, SA_OAuthTwitterControllerDelegate,MFMailComposeViewControllerDelegate> {
+@interface AppDelegate : NSObject <UIApplicationDelegate,GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameCenterManagerDelegate, MFMailComposeViewControllerDelegate> {//SA_OAuthTwitterControllerDelegate,
 	UIWindow			*window;
 	RootViewController	*viewController;
     int box;
     GCViewController *viewController2;
     GameCenterManager* gameCenterManager;
     NSString* currentLeaderBoard;
-    SA_OAuthTwitterEngine	*_engine;
+  //  SA_OAuthTwitterEngine	*_engine;
+  //  MGTwitterEngine *twitterEngine;
+	UIAlertView *objAlertView;
+	//OAToken *token;
     NSUserDefaults *link;
     NSURLConnection *  connection;
     NSMutableData *data;
