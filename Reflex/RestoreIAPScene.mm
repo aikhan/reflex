@@ -85,34 +85,32 @@
     [[MKStoreManager sharedManager] restorePreviousTransactionsOnComplete:^{
         
         if([MKStoreManager isFeaturePurchased: featureAIdVar] == NO) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"This app does not appear to be purchased.\nPlease try again in a moment." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            [alert release];
+            [MMProgressHUD dismissWithError:@"This app does not appear to be purchased.\nPlease try again in a moment."];
+           
+            
         }
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Restore Completed" message:@"In app Purchase Remove Ads Restored" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-            [alert release];
+            [MMProgressHUD dismissWithSuccess:@"In app Purchase Remove Ads Restored!"];
             [SettingsManager sharedManager].hasInAppPurchaseBeenMade = YES;
             NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
             [standardUserDefaults setBool:[SettingsManager sharedManager].hasInAppPurchaseBeenMade forKey:@"inapp"];
             [standardUserDefaults synchronize];
             
-            [self removeChildByTag:6 cleanup:YES];
-          //  [self removeChildByTag:21 cleanup:YES];
-           // [self removeChildByTag:1000 cleanup:YES];
             NSLog(@"true");
+            
+            
         }
-        [MMProgressHUD dismissWithSuccess:@"Success!"];
         
+       // CCScene* back = [Menu node];
+        [[CCDirector sharedDirector] replaceScene:[Menu scene]];
     } onError:^(NSError *A) {
         [MMProgressHUD dismissWithError:@"Unable to process your transaction.\nPlease try again in a moment." title:@"Error"];
+        [[CCDirector sharedDirector] replaceScene:[Menu scene]];
     }];
 #endif
     
     
-    CCScene* back = [Menu node];
-	[[CCDirector sharedDirector] replaceScene:back];
+    
     
 	
 }

@@ -90,7 +90,7 @@
      //   mainDelegate.m_showhint = 1;
    // [[SoundManager sharedSoundManager] playMenuSound];
     
-	[m_delegate actionQuit:sender];
+	[m_delegate actionQuitfromPause:sender];
 }
 
 - (void)actionResume:(id)sender {

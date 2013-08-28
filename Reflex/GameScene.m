@@ -21,7 +21,7 @@
 #import "MKStoreManager.h"
 #import "AppSpecificValues.h"
 
-
+#import "RestoreIAPScene.h"
 
 @implementation GameScene
 
@@ -363,6 +363,14 @@
     [self createAdRemoveButton];
 }
 - (void) showIAPNOADS :(id)sender {
+    //[self terminate];
+#ifdef FreeApp
+    if (![SettingsManager sharedManager].hasInAppPurchaseBeenMade) {
+        [[SNAdsManager sharedManager] hideBannerAd];
+    }
+#endif
+    [[CCDirector sharedDirector] replaceScene:[RestoreIAPScene scene]];
+       /*
 #ifdef FreeApp
     if([MKStoreManager isFeaturePurchased: featureAIdVar] == NO) {
         
@@ -408,7 +416,8 @@
         
     }
 #endif
-    
+    [[CCDirector sharedDirector] startAnimation];
+       */
 }
 -(void)createAdRemoveButton
 {
@@ -427,7 +436,7 @@
         [removeAdButton setPosition:ccp( SCREEN_WIDTH-sprite1.contentSize.width-20,SCREEN_HEIGHT- sprite1.contentSize.height)];
     }
     [self addChild: removeAdButton z:10];
-    removeAdButton.visible = TRUE;
+
     
     
     
@@ -453,14 +462,22 @@
 	[self addChild:m_pauseView z:1000];
 	[m_pauseView setVisible:NO];
 }
+- (void)actionQuitfromPause:(id)sender {
+
+    CCScene *scene = [Menu scene];
+    [[CCDirector sharedDirector] resume];
+    CCTransitionScene *ts = [CCTransitionFade transitionWithDuration:0.6f scene:scene withColor:ccBLACK];
+    
+	[[CCDirector sharedDirector] replaceScene:ts];
+}
 - (void)actionQuit:(id)sender {
    // [[SoundManager sharedSoundManager] playBackgroundMusic:0];
     [self terminate];
-	CCScene *scene = [Menu scene];
-    [[CCDirector sharedDirector] resume];
-	CCTransitionScene *ts = [CCTransitionFade transitionWithDuration:0.6f scene:scene withColor:ccBLACK];
+	//CCScene *scene = [Menu scene];
+  //  [[CCDirector sharedDirector] resume];
+//	CCTransitionScene *ts = [CCTransitionFade transitionWithDuration:0.6f scene:scene withColor:ccBLACK];
     
-	[[CCDirector sharedDirector] replaceScene:ts];
+	//[[CCDirector sharedDirector] replaceScene:ts];
 }
 
 - (void)actionResume:(id)sender {
