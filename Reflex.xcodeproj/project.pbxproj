@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13505D1817D61D73008392A3 /* Reflex copy2-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13505D1617D61D72008392A3 /* Reflex copy2-Info.plist */; };
+		13505D1917D61D73008392A3 /* Reflex copy2-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13505D1617D61D72008392A3 /* Reflex copy2-Info.plist */; };
+		13505D1A17D61D73008392A3 /* Reflex copy3-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13505D1717D61D73008392A3 /* Reflex copy3-Info.plist */; };
+		13505D1B17D61D73008392A3 /* Reflex copy3-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13505D1717D61D73008392A3 /* Reflex copy3-Info.plist */; };
+		13505D1D17D625A4008392A3 /* horse_and_buggy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 13505D1C17D625A4008392A3 /* horse_and_buggy.mp3 */; };
+		13505D1E17D625A4008392A3 /* horse_and_buggy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 13505D1C17D625A4008392A3 /* horse_and_buggy.mp3 */; };
 		3844573B17CE204300741F0E /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = F586A057142B3C6C0059AE35 /* CCAction.m */; };
 		3844573C17CE204300741F0E /* CCActionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = F586A05A142B3C6C0059AE35 /* CCActionCamera.m */; };
 		3844573D17CE204300741F0E /* CCActionEase.m in Sources */ = {isa = PBXBuildFile; fileRef = F586A05D142B3C6C0059AE35 /* CCActionEase.m */; };
@@ -908,8 +914,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13505D1617D61D72008392A3 /* Reflex copy2-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Reflex copy2-Info.plist"; sourceTree = "<group>"; };
+		13505D1717D61D73008392A3 /* Reflex copy3-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Reflex copy3-Info.plist"; sourceTree = "<group>"; };
+		13505D1C17D625A4008392A3 /* horse_and_buggy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = horse_and_buggy.mp3; sourceTree = "<group>"; };
 		3844590017CE204300741F0E /* Reflex copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Reflex copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3844590117CE204400741F0E /* Reflex copy3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Reflex copy3-Info.plist"; path = "/Users/SemanticNotion/apps/Reflex/Reflex copy3-Info.plist"; sourceTree = "<absolute>"; };
 		3851AB8B17C63914000D713D /* about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@3x.png"; sourceTree = "<group>"; };
 		3851AB8C17C63914000D713D /* bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@3x.png"; sourceTree = "<group>"; };
 		3851AB8D17C63914000D713D /* bg_game@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_game@3x.png"; sourceTree = "<group>"; };
@@ -1177,7 +1185,6 @@
 		3898BE3517C7640500DE004F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3898BE3717C7640E00DE004F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		3898BE3917C7641F00DE004F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		3898BFA617C764A100DE004F /* Reflex copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Reflex copy2-Info.plist"; path = "/Users/SemanticNotion/apps/Reflex/Reflex copy2-Info.plist"; sourceTree = "<absolute>"; };
 		38B5EDFA17CCD5DE00C45657 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		38BE3B6817CDFC8200D766CC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		38BE3C4217CE0ECB00D766CC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -1757,6 +1764,7 @@
 		3851ABE717C63914000D713D /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				13505D1C17D625A4008392A3 /* horse_and_buggy.mp3 */,
 				3851ABE817C63914000D713D /* hit.mp3 */,
 				3851ABE917C63914000D713D /* miss.mp3 */,
 				3851ABEA17C63914000D713D /* Slice.mp3 */,
@@ -2376,8 +2384,8 @@
 				F586A03F142B3C6C0059AE35 /* Reflex */,
 				F586A02E142B3C6C0059AE35 /* Frameworks */,
 				F586A02C142B3C6C0059AE35 /* Products */,
-				3898BFA617C764A100DE004F /* Reflex copy2-Info.plist */,
-				3844590117CE204400741F0E /* Reflex copy3-Info.plist */,
+				13505D1617D61D72008392A3 /* Reflex copy2-Info.plist */,
+				13505D1717D61D73008392A3 /* Reflex copy3-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3102,6 +3110,9 @@
 				384458FB17CE204300741F0E /* silver-button-pressed.png in Resources */,
 				384458FC17CE204300741F0E /* silver-button-pressed@2x.png in Resources */,
 				386D2CD217CE48410083DC32 /* Icon 144.png in Resources */,
+				13505D1917D61D73008392A3 /* Reflex copy2-Info.plist in Resources */,
+				13505D1B17D61D73008392A3 /* Reflex copy3-Info.plist in Resources */,
+				13505D1E17D625A4008392A3 /* horse_and_buggy.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3365,6 +3376,9 @@
 				38DFF49C17C8DDAC00DADF92 /* silver-button-pressed.png in Resources */,
 				38DFF49E17C8DDAC00DADF92 /* silver-button-pressed@2x.png in Resources */,
 				386D2CD117CE480B0083DC32 /* Icon 144.png in Resources */,
+				13505D1817D61D73008392A3 /* Reflex copy2-Info.plist in Resources */,
+				13505D1A17D61D73008392A3 /* Reflex copy3-Info.plist in Resources */,
+				13505D1D17D625A4008392A3 /* horse_and_buggy.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3732,7 +3746,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Reflex copy3-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Twitter+OAuth/SAOAuthTwitterEngine\"",
@@ -3773,7 +3787,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "Reflex copy3-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Twitter+OAuth/SAOAuthTwitterEngine\"",
@@ -3859,7 +3873,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Reflex/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Twitter+OAuth/SAOAuthTwitterEngine\"",
@@ -3900,7 +3914,7 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Reflex/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Twitter+OAuth/SAOAuthTwitterEngine\"",

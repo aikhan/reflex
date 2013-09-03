@@ -75,6 +75,7 @@
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"Slice.mp3"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"hit.mp3"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"miss.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"horse_and_buggy.mp3"];
     
     LoggedIn = false;
     PostedStatus=false;
@@ -189,6 +190,7 @@
 #endif
 	// Run the intro Scene
 	[[CCDirector sharedDirector] runWithScene: [Splash scene]];
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"horse_and_buggy.mp3" loop:YES];
 }
 
 - (void)connection:(NSURLConnection *)theConnection 

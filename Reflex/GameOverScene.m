@@ -14,6 +14,7 @@
 #import "SNAdsManager.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Social/Social.h>
+
 //#import "FacebookScorer.h"
 
 @implementation GameOverScene
@@ -103,7 +104,7 @@
         if(![[SettingsManager sharedManager] hasInAppPurchaseBeenMade])
         {
             [[SNAdsManager sharedManager] hideBannerAd];
-            [[SNAdsManager sharedManager] giveMeThirdGameOverAd];
+            [[SNAdsManager sharedManager] giveMeGameOverAd];
         }
 #endif
         appDelegate.PostedStatus = false;

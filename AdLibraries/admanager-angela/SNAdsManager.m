@@ -584,7 +584,7 @@ static SNAdsManager *sharedManager = nil;
 
 - (void)giveMeGameOverAd{
     [self giveMeFullScreenAd];
-   // [self giveMeFullScreenRevMobAd];
+    [self giveMeFullScreenRevMobAd];
 }
 
 - (void)giveMeThirdGameOverAd{
@@ -593,18 +593,18 @@ static SNAdsManager *sharedManager = nil;
     NSLog(@"game over counter %d", gameOverCount);
     if (gameOverCount %3 == 0){
         [self giveMeFullScreenAd];
-       // [self giveMeFullScreenRevMobAd];
+        [self giveMeFullScreenRevMobAd];
     }
 }
 
 - (void)giveMeBootUpAd{
     [self giveMeFullScreenAd];
-   // [self giveMeFullScreenRevMobAd];
+    [self giveMeFullScreenRevMobAd];
 }
 - (void)giveMeWillEnterForegroundAd{
     [[PHPublisherOpenRequest requestForApp:kPlayHavenAppToken secret:kPlayHavenSecret] send];
     [self giveMeFullScreenAd];
-  //  [self giveMeFullScreenRevMobAd];
+    [self giveMeFullScreenRevMobAd];
 }
 -(void) giveMePaidFullScreenAd{
     [self giveMeFullScreenChartBoostAd];
@@ -738,9 +738,9 @@ static SNAdsManager *sharedManager = nil;
 }
 
 - (void)appLovinFullScreenDidLoadAd:(GenericAd *)ad{
-    if ([self.delegate respondsToSelector:@selector(fullScreenAdDidLoad)]) {
-        [self.delegate fullScreenAdDidLoad];
-    }
+//    if ([self.delegate respondsToSelector:@selector(fullScreenAdDidLoad)]) {
+//        [self.delegate fullScreenAdDidLoad];
+//    }
 }
 - (void)appLovinBannerDidLoadAd:(GenericAd *)ad{
     if ([self.delegate respondsToSelector:@selector(bannerAdDidLoad)]) {
