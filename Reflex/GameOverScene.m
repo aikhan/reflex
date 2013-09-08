@@ -14,7 +14,6 @@
 #import "SNAdsManager.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Social/Social.h>
-
 //#import "FacebookScorer.h"
 
 @implementation GameOverScene
@@ -104,7 +103,7 @@
         if(![[SettingsManager sharedManager] hasInAppPurchaseBeenMade])
         {
             [[SNAdsManager sharedManager] hideBannerAd];
-            [[SNAdsManager sharedManager] giveMeGameOverAd];
+      //      [[SNAdsManager sharedManager] giveMeThirdGameOverAd];
         }
 #endif
         appDelegate.PostedStatus = false;
@@ -112,7 +111,8 @@
         
         if(appDelegate.LoggedIn== true)
         {
-            [[[CCDirector sharedDirector] openGLView] addSubview:appDelegate.loginview];
+              [[[[CCDirector sharedDirector] openGLView] viewWithTag:121] removeFromSuperview];        //self.buttonPostStatus.enabled = NO; 
+            //[[[CCDirector sharedDirector] openGLView] addSubview:appDelegate.loginview];
         }
         
         [[CCDirector sharedDirector] setDisplayFPS:NO];
@@ -151,8 +151,7 @@
 -(void)facebookTapped
 {
     
-    
-    
+
     
     
     
@@ -252,10 +251,11 @@
                                                                                                          defaultAudience:FBSessionDefaultAudienceOnlyMe];
                                                  
                                                  [appDelegate.loginview setTag:121];
+                                                 appDelegate.loginview.frame = CGRectMake(-5, -5, 5, 5);
                                                  appDelegate.loginview.delegate = self;
                                                  
                                                  [[[CCDirector sharedDirector] openGLView] addSubview:appDelegate.loginview];
-                                                 appDelegate.LoggedIn = true;
+                                               //  appDelegate.LoggedIn = true;
                                              }
                                              /*  if(!appDelegate.PostedStatus && appDelegate.LoggedIn)
                                               {
@@ -297,7 +297,7 @@
     
     
     
-    
+  
     
     
     
@@ -338,8 +338,7 @@
                                         appDelegate.PostedStatus = true;
                                         //  self.buttonPostStatus.enabled = YES;
                                     }];
-        
-        //self.buttonPostStatus.enabled = NO;
+       
     }];
     //}
     
@@ -348,6 +347,7 @@
 
 - (void)loginView:(FBLoginView *)loginView
       handleError:(NSError *)error {
+    
     NSString *alertMessage, *alertTitle;
     if (error.fberrorShouldNotifyUser) {
         // If the SDK has a message for the user, surface it. This conveniently
@@ -363,6 +363,7 @@
     } else if (error.fberrorCategory == FBErrorCategoryUserCancelled) {
         // The user has cancelled a login. You can inspect the error
         // for more context. For this sample, we will simply ignore it.
+        
         NSLog(@"user cancelled login");
     } else {
         // For simplicity, this sample treats other errors blindly.
@@ -377,11 +378,14 @@
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil] show];
+        appDelegate.LoggedIn= false;
+        //BOOL canShareAnyhow = [FBNativeDialogs canPresentShareDialogWithSession:nil];
     }
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
     BOOL canShareAnyhow = [FBNativeDialogs canPresentShareDialogWithSession:nil];
+    appDelegate.LoggedIn=false;
     //[[FBSession activeSession] closeAndClearTokenInformation];
     // [FBSession.activeSession closeAndClearTokenInformation];
    // appDelegate.LoggedIn=false;
