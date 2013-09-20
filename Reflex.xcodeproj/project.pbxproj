@@ -652,6 +652,12 @@
 		3851AFBB17C680FD000D713D /* WWURLMatching.m in Sources */ = {isa = PBXBuildFile; fileRef = 3851AF3717C680FC000D713D /* WWURLMatching.m */; };
 		3851AFBD17C680FD000D713D /* RevMobAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3851AF3817C680FC000D713D /* RevMobAds.framework */; };
 		3851AFBF17C680FD000D713D /* TapjoyAdvertiserLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3851AF3A17C680FC000D713D /* TapjoyAdvertiserLibrary.a */; };
+		385D55FF17EC6AD400755523 /* KiipSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385D55FE17EC6AD400755523 /* KiipSDK.framework */; };
+		385D560017EC6AD500755523 /* KiipSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385D55FE17EC6AD400755523 /* KiipSDK.framework */; };
+		385D560217EC6D1600755523 /* KiipSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 385D560117EC6D1600755523 /* KiipSDKResources.bundle */; };
+		385D560317EC6D1600755523 /* KiipSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 385D560117EC6D1600755523 /* KiipSDKResources.bundle */; };
+		385D560517EC6D2200755523 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385D560417EC6D2200755523 /* PassKit.framework */; };
+		385D560617EC6D2A00755523 /* PassKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385D560417EC6D2200755523 /* PassKit.framework */; };
 		386D2CD117CE480B0083DC32 /* Icon 144.png in Resources */ = {isa = PBXBuildFile; fileRef = 386D2CD017CE480A0083DC32 /* Icon 144.png */; };
 		386D2CD217CE48410083DC32 /* Icon 144.png in Resources */ = {isa = PBXBuildFile; fileRef = 386D2CD017CE480A0083DC32 /* Icon 144.png */; };
 		3898BE1F17C762F200DE004F /* GenericAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3898BE1217C762F200DE004F /* GenericAd.m */; };
@@ -1163,6 +1169,9 @@
 		3851AF3A17C680FC000D713D /* TapjoyAdvertiserLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = TapjoyAdvertiserLibrary.a; sourceTree = "<group>"; };
 		3851AF3B17C680FC000D713D /* TapjoyConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapjoyConnect.h; sourceTree = "<group>"; };
 		3851AF3C17C680FC000D713D /* TapjoyConnectConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapjoyConnectConstants.h; sourceTree = "<group>"; };
+		385D55FE17EC6AD400755523 /* KiipSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KiipSDK.framework; sourceTree = "<group>"; };
+		385D560117EC6D1600755523 /* KiipSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = KiipSDKResources.bundle; sourceTree = "<group>"; };
+		385D560417EC6D2200755523 /* PassKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PassKit.framework; path = System/Library/Frameworks/PassKit.framework; sourceTree = SDKROOT; };
 		386D2CD017CE480A0083DC32 /* Icon 144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon 144.png"; sourceTree = "<group>"; };
 		3898BE1117C762F200DE004F /* GenericAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericAd.h; sourceTree = "<group>"; };
 		3898BE1217C762F200DE004F /* GenericAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericAd.m; sourceTree = "<group>"; };
@@ -1584,6 +1593,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				385D560617EC6D2A00755523 /* PassKit.framework in Frameworks */,
 				384457DE17CE204300741F0E /* StoreKit.framework in Frameworks */,
 				384457DF17CE204300741F0E /* Twitter.framework in Frameworks */,
 				384457E017CE204300741F0E /* CoreLocation.framework in Frameworks */,
@@ -1615,6 +1625,7 @@
 				384457FA17CE204300741F0E /* TapjoyAdvertiserLibrary.a in Frameworks */,
 				384457FB17CE204300741F0E /* libAppLovinSdk.a in Frameworks */,
 				384457FC17CE204300741F0E /* FacebookSDK.framework in Frameworks */,
+				385D560017EC6AD500755523 /* KiipSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1622,6 +1633,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				385D560517EC6D2200755523 /* PassKit.framework in Frameworks */,
 				3898BE3017C763B400DE004F /* StoreKit.framework in Frameworks */,
 				38BE3C4917CE0F0100D766CC /* Twitter.framework in Frameworks */,
 				38BE3C4717CE0EFC00D766CC /* CoreLocation.framework in Frameworks */,
@@ -1653,6 +1665,7 @@
 				3851AFBF17C680FD000D713D /* TapjoyAdvertiserLibrary.a in Frameworks */,
 				3851AF3D17C680FC000D713D /* libAppLovinSdk.a in Frameworks */,
 				38B5EDFB17CCD5DE00C45657 /* FacebookSDK.framework in Frameworks */,
+				385D55FF17EC6AD400755523 /* KiipSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2363,6 +2376,9 @@
 		F586A020142B3C6C0059AE35 = {
 			isa = PBXGroup;
 			children = (
+				385D560417EC6D2200755523 /* PassKit.framework */,
+				385D560117EC6D1600755523 /* KiipSDKResources.bundle */,
+				385D55FE17EC6AD400755523 /* KiipSDK.framework */,
 				386D2CD017CE480A0083DC32 /* Icon 144.png */,
 				38BE3C4817CE0F0100D766CC /* Twitter.framework */,
 				38BE3C4617CE0EFC00D766CC /* CoreLocation.framework */,
@@ -3113,6 +3129,7 @@
 				13505D1917D61D73008392A3 /* Reflex copy2-Info.plist in Resources */,
 				13505D1B17D61D73008392A3 /* Reflex copy3-Info.plist in Resources */,
 				13505D1E17D625A4008392A3 /* horse_and_buggy.mp3 in Resources */,
+				385D560317EC6D1600755523 /* KiipSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3379,6 +3396,7 @@
 				13505D1817D61D73008392A3 /* Reflex copy2-Info.plist in Resources */,
 				13505D1A17D61D73008392A3 /* Reflex copy3-Info.plist in Resources */,
 				13505D1D17D625A4008392A3 /* horse_and_buggy.mp3 in Resources */,
+				385D560217EC6D1600755523 /* KiipSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3738,6 +3756,7 @@
 					"\"$(SRCROOT)/AdLibraries\"",
 					"\"$(SRCROOT)/Social Connection\"",
 					"\"$(SRCROOT)/Social Connection/FacebookScorer\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3780,6 +3799,7 @@
 					"\"$(SRCROOT)/AdLibraries\"",
 					"\"$(SRCROOT)/Social Connection\"",
 					"\"$(SRCROOT)/Social Connection/FacebookScorer\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Reflex/Prefix.pch;
@@ -3865,6 +3885,7 @@
 					"\"$(SRCROOT)/AdLibraries\"",
 					"\"$(SRCROOT)/Social Connection\"",
 					"\"$(SRCROOT)/Social Connection/FacebookScorer\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3907,6 +3928,7 @@
 					"\"$(SRCROOT)/AdLibraries\"",
 					"\"$(SRCROOT)/Social Connection\"",
 					"\"$(SRCROOT)/Social Connection/FacebookScorer\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Reflex/Prefix.pch;

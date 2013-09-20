@@ -14,6 +14,7 @@
 #import "SNAdsManager.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Social/Social.h>
+#import <KiipSDK/KiipSDK.h>
 //#import "FacebookScorer.h"
 
 @implementation GameOverScene
@@ -98,14 +99,7 @@
         [m_btnFreeGames setPosition:ccp(SCREEN_WIDTH / 2, SCREEN_HEIGHT /6)];
         [self addChild: m_btnFreeGames];
         
-#ifdef FreeApp
-        
-        if(![[SettingsManager sharedManager] hasInAppPurchaseBeenMade])
-        {
-            [[SNAdsManager sharedManager] hideBannerAd];
-      //      [[SNAdsManager sharedManager] giveMeThirdGameOverAd];
-        }
-#endif
+
         appDelegate.PostedStatus = false;
         
         
@@ -123,7 +117,9 @@
         //                                        ApiProxy:nil];
         // fbAgent.delegate = self;
         
-        
+        //[[Kiip sharedInstance] saveMoment:@"Your Reward on finishing the Game!" withCompletionHandler:nil];
+       [[Kiip sharedInstance] saveMoment:@"Your Reward on touching 30 boxes!" value:boxes withCompletionHandler:nil];
+      
         self.isTouchEnabled=YES;
         
     }

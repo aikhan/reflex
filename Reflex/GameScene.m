@@ -151,6 +151,7 @@
         [self schedule:@selector(CheckForSlice:) interval:0.08];
 #ifdef FreeApp
         if (![SettingsManager sharedManager].hasInAppPurchaseBeenMade) {
+            isbannerActive = false;
             [SNAdsManager sharedManager].delegate = self;
             [[SNAdsManager sharedManager] giveMeBannerAdAtTop];
             // [self createAdRemoveButton ];
@@ -361,6 +362,7 @@
 
 - (void)bannerAdDidLoad{
     [self createAdRemoveButton];
+    isbannerActive = true;;
 }
 - (void) showIAPNOADS :(id)sender {
     //[self terminate];
@@ -444,7 +446,11 @@
 - (void) actionPause:(id)sender{
 #ifdef FreeApp
     if (![SettingsManager sharedManager].hasInAppPurchaseBeenMade) {
+        if(isbannerActive==true)
+        {
         [[SNAdsManager sharedManager] hideBannerAd];
+            isbannerActive = false;
+        }
     }
 #endif
   //  [[SoundManager sharedSoundManager] stopBackgroundMusic];
@@ -497,6 +503,15 @@
 
 -(void)terminate
 {
+#ifdef FreeApp
+    if (![SettingsManager sharedManager].hasInAppPurchaseBeenMade) {
+        if(isbannerActive==true)
+        {
+            [[SNAdsManager sharedManager] hideBannerAd];
+            isbannerActive = false;
+        }
+    }
+#endif
     AppDelegate *appDelegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
     appDelegate.box = boxes;
     

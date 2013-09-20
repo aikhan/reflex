@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 //#import "SA_OAuthTwitterEngine.h"
 //#import "SA_OAuthTwitterController.h"
+#import <KiipSDK/KiipSDK.h>
 #import "GameCenterManager.h"
 #import <MessageUI/MessageUI.h>
 #import "GCViewController.h"
@@ -16,7 +17,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 @class RootViewController;
 
-@interface AppDelegate : NSObject <UIApplicationDelegate,GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameCenterManagerDelegate, MFMailComposeViewControllerDelegate> {//SA_OAuthTwitterControllerDelegate,
+@interface AppDelegate : NSObject <UIApplicationDelegate,GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate, GameCenterManagerDelegate, MFMailComposeViewControllerDelegate,KiipDelegate> {//SA_OAuthTwitterControllerDelegate,
 	UIWindow			*window;
 	RootViewController	*viewController;
     int box;

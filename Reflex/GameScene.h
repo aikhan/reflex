@@ -26,6 +26,7 @@
     int boxes;
     int highscore;
     float speed;
+    bool isbannerActive;
     
     CCSprite *greenBox;
     CCSprite *redBox;
