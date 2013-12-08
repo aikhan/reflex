@@ -334,7 +334,7 @@ static VerificationController *singleton;
 #endif
     } else {
         // Pre iOS 6 
-        NSString *localIdentifier           = [UIDevice currentDevice].uniqueIdentifier;
+        NSString *localIdentifier           = nil;//[UIDevice currentDevice].uniqueIdentifier;
         NSString *purchaseInfoUniqueId      = [purchaseInfoFromTransaction objectForKey:@"unique-identifier"];
 
         

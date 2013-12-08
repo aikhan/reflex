@@ -29,28 +29,28 @@
 #define kChartBoostTimeOutThresholdValue 5.0
 #ifdef FreeApp
 #define kRevMobId @"528f505b3fb84f006d000018"
-
-#define ChartBoostAppID @"5256b5c917ba472505000002"
-#define ChartBoostAppSignature @"24802bb7caf8a90b0bcda33bebe0ab7eb0f6c78a"
+#define flurryKey @"DQZ32SH8SPV6T3PCQ2XV"
+#define ChartBoostAppID @"51edcd4716ba47f21e000003"
+#define ChartBoostAppSignature @"f3ec4575fdce3ef891a8aede9e7c1d2f5e375b14"
 
 #define kAppLovinID @"szwFHrfAufK_TAyhLTgJe4nEu9rN5A0x8wAPlqadUwcy4ZeQ2JkgNVwGelekvef1ZqRIe0x8wX5_5kP728pQei"
 
-#define kPlayHavenAppToken @"b043452647634a76b84e0ff2448df438"
-#define kPlayHavenSecret @"1b1e1b1cb1bc411a8874641a69e9bf6e"
+#define kPlayHavenAppToken @"5c511d0d05424265902ea6324016fd0e"
+#define kPlayHavenSecret @"f8c7df1a75c443db8937508df86ec742"
 #define kPlayHavenPlacement @"main_menu"
 #ifdef IS_IOS7_AND_UP
-#define kRateURL @"itms-apps://itunes.apple.com/app/id766454506"
+#define kRateURL @"itms-apps://itunes.apple.com/app/id695102537"
 #else
-#define kRateURL @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=766454506"
+#define kRateURL @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=695102537"
 #endif
 
 #endif
 
 #ifdef PaidApp
 #define kRevMobId @"528f505b3fb84f006d000018"
-
-#define ChartBoostAppID @"5256b5c917ba472505000002"
-#define ChartBoostAppSignature @"24802bb7caf8a90b0bcda33bebe0ab7eb0f6c78a"
+#define flurryKey @"9CJNXTXD8S6PJZTJ7KDB"
+#define ChartBoostAppID @"51edcd4716ba47f21e000003"
+#define ChartBoostAppSignature @"f3ec4575fdce3ef891a8aede9e7c1d2f5e375b14"
 
 #define kPlayHavenAppToken @""
 #define kPlayHavenSecret @""
@@ -61,9 +61,9 @@
 
 
 #ifdef IS_IOS7_AND_UP
-    #define kRateURL @"itms-apps://itunes.apple.com/app/id771690999"
+    #define kRateURL @"itms-apps://itunes.apple.com/app/id470486083"
 #else
-    #define kRateURL @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=771690999"
+    #define kRateURL @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=470486083"
 #endif
 
 #endif

@@ -752,8 +752,8 @@ static SNAdsManager *sharedManager = nil;
 }
 - (void)appLovinFullScreenDidFailToLoad:(GenericAd *)ad{
     [self loadFullscreenAdWithLowerPriorityThanPreviousAd:ad];
-    if ([self.delegate respondsToSelector:@selector(appLovinFullScreenAdDidFailToLoad)]) {
-        [self.delegate appLovinFullScreenAdDidFailToLoad];
-    }
+//    if ([self.delegate respondsToSelector:@selector(appLovinFullScreenAdDidFailToLoad)]) {
+//        [self.delegate appLovinFullScreenAdDidFailToLoad];
+  //  }
 }
 @end

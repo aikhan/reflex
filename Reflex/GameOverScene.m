@@ -168,8 +168,8 @@
         ///  {
         message = @"Hey Check out This Cool Game. I Scored ";
         message = [message stringByAppendingFormat:@"%d",appDelegate.box];
-        message = [message stringByAppendingString:@" with my speed. How fast are you?"];
-        message = [message stringByAppendingFormat:@" You can download it at %@",appDelegate.myLink];
+        message = [message stringByAppendingString:@" with my speed. How fast are you?#reflex #semanticnotion" ];
+        message = [message stringByAppendingFormat:@" You can download it at %@",kRateURL];
         
         if(!appDelegate.PostedStatus)
         {
@@ -310,8 +310,8 @@
     
     message = @"Hey Check out This Cool Game. I Scored ";
     message = [message stringByAppendingFormat:@"%d",appDelegate.box];
-    message = [message stringByAppendingString:@" with my speed. How fast are you?"];
-    message = [message stringByAppendingFormat:@" You can download it at %@",appDelegate.myLink];
+    message = [message stringByAppendingString:@" with my speed. How fast are you? #reflex #semanticnotion"];
+    message = [message stringByAppendingFormat:@" You can download it at %@",kRateURL];
     
     
     

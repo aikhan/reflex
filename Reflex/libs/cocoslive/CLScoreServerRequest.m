@@ -78,7 +78,7 @@
 	
 	NSString *device = @"";
 	if( flags & kQueryFlagByDevice )
-		device = [[UIDevice currentDevice] uniqueIdentifier];
+		device = nil;//[[UIDevice currentDevice] uniqueIdentifier];
 	
 	// arguments:
 	//  query: type of query

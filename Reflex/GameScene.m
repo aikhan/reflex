@@ -291,7 +291,7 @@
         RandomBoxCounter++;
         if(RandomBoxCounter%10==0)
         {
-            
+            [[SimpleAudioEngine sharedEngine] playEffect:@"speed.aiff"];
             if(arc4random()%2==0)
             {
                 
@@ -311,6 +311,7 @@
                                                        selector:@selector(moveRedBoxFinished)];
             
                 [redBox runAction:[CCSequence actions:moveRedBox , RedBoxFinished, nil]];
+                
             }
             
         }

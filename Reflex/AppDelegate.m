@@ -75,7 +75,8 @@
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"Slice.mp3"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"hit.mp3"];
     [[SimpleAudioEngine sharedEngine] preloadEffect:@"miss.mp3"];
-    [[SimpleAudioEngine sharedEngine] preloadEffect:@"horse_and_buggy.mp3"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"sound.aifc"];
+    [[SimpleAudioEngine sharedEngine] preloadEffect:@"speed.aiff"];
     
     LoggedIn = false;
     PostedStatus=false;
@@ -84,8 +85,8 @@
     myLink = [link stringForKey:@"stringKey"];
     if(myLink==nil)
     {
-        NSURLRequest *linkRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://semanticdevlab.com/reflex/link.php"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60.0];
-        self.connection = [[NSURLConnection alloc] initWithRequest:linkRequest delegate:self];
+//        NSURLRequest *linkRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://semanticdevlab.com/reflex/link.php"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60.0];
+//        self.connection = [[NSURLConnection alloc] initWithRequest:linkRequest delegate:self];
     }
     
     
@@ -128,10 +129,21 @@
 	[director setOpenGLView:glView];
 	
 	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
-	if( ! [director enableRetinaDisplay:YES] )
-		CCLOG(@"Retina Display Not supported");
-	
-	//
+	if (![SettingsManager sharedManager].isIPad) {
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+            ([UIScreen mainScreen].scale == 2.0)) {
+            // Retina display
+            [director setContentScaleFactor:2];
+            [director enableRetinaDisplay:YES];
+        } else {
+            // non-Retina display
+            [director enableRetinaDisplay:NO];
+            [director setContentScaleFactor:1];
+        }
+        
+    }else{
+        [director enableRetinaDisplay:NO];
+    }	//
 	// VERY IMPORTANT:
 	// If the rotation is going to be controlled by a UIViewController
 	// then the device orientation should be "Portrait".
@@ -198,7 +210,7 @@
 #endif
 	// Run the intro Scene
 	[[CCDirector sharedDirector] runWithScene: [Splash scene]];
-    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"horse_and_buggy.mp3" loop:YES];
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"sound.aifc" loop:YES];
 }
 
 - (void)connection:(NSURLConnection *)theConnection 
@@ -441,8 +453,8 @@
         TWTweetComposeViewController *twitterComposer = [[TWTweetComposeViewController alloc]init];
         NSString * update = @"Hey Check out This Cool Game. I Scored ";
         update = [update stringByAppendingFormat:@"%d",box];
-        update = [update stringByAppendingString:@" with my speed. How fast are you?"];
-        update = [update stringByAppendingFormat:@" You can download it at %@",myLink];
+        update = [update stringByAppendingString:@" with my speed. How fast are you? #reflex @semanticnotion"];
+        update = [update stringByAppendingFormat:@" You can download it at %@",kRateURL];
         [twitterComposer setInitialText:update];
         [viewController presentModalViewController: twitterComposer animated: YES];
         twitterComposer.completionHandler = ^(TWTweetComposeViewControllerResult res)
@@ -570,7 +582,7 @@
         NSString * update = @"Hey Check out This Cool Game. I Scored ";
         update = [update stringByAppendingFormat:@"%d",box];
         update = [update stringByAppendingString:@" with my speed. How fast are you?"];
-        update = [update stringByAppendingFormat:@" You can download it at %@",myLink];
+        update = [update stringByAppendingFormat:@" You can download it at %@",kRateURL];
         
 		[mailComposer setToRecipients:nil];
 		[mailComposer setSubject:nil];
